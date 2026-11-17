@@ -31,4 +31,5 @@ O login redireciona para `/dashboard`, que valida a sessão em `/api/v1/me`. Con
 ## Documentação
 
 - [Product](docs/Product.md) — visão geral do produto, fluxos e proposta de integração para autenticação.
+- [Decisions](docs/Decisions.md) — decisões de produto e experiência, com contexto e impactos.
 - [Tools](docs/Tools.md) — stack e ferramentas do frontend.

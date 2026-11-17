@@ -1,7 +1,7 @@
 .dashboard-app {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-columns: 232px minmax(0, 1fr);
   color: #f1f0ea;
   background: #222525;
 }
@@ -12,28 +12,28 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 34px 28px 30px 32px;
+  padding: 34px 24px;
   background: #1c1f1f;
 }
 
 .dashboard-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 9px;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
 .dashboard-brand span {
-  color: #f1f0ea;
+  color: #f26a32;
   font-size: 16px;
 }
 
 .dashboard-nav {
   display: grid;
   gap: 8px;
-  margin-top: 76px;
+  margin-top: 72px;
 }
 
 .dashboard-nav a {
@@ -43,13 +43,13 @@
   padding: 0 12px;
   border-left: 2px solid transparent;
   color: #c4c5bf;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .dashboard-nav a:hover,
 .dashboard-nav a.is-active {
   color: #f26a32;
-  background: #252928;
+  background: #262a29;
 }
 
 .dashboard-nav a.is-active {
@@ -66,7 +66,7 @@
   cursor: pointer;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
   text-align: left;
 }
 
@@ -76,9 +76,9 @@
 }
 
 .dashboard-main {
-  width: min(100%, 1200px);
+  width: min(100%, 1300px);
   margin: 0 auto;
-  padding: 38px 44px 40px 46px;
+  padding: 34px 42px 28px;
 }
 
 .dashboard-header {
@@ -91,11 +91,9 @@
 }
 
 .dashboard-eyebrow,
-.dashboard-panel-heading h2,
-.dashboard-meals-heading h3,
-.dashboard-cups-heading {
+.dashboard-panel-heading h2 {
   margin: 0;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.4px;
 }
@@ -107,15 +105,15 @@
 
 .dashboard-header h1 {
   margin: 0;
-  font-size: 31px;
-  letter-spacing: -0.7px;
-  line-height: 1.12;
+  font-size: 30px;
+  letter-spacing: -0.8px;
+  line-height: 1.08;
 }
 
 .dashboard-user {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
   color: #c4c5bf;
   font-size: 12px;
 }
@@ -147,31 +145,31 @@
   gap: 14px;
 }
 
-.dashboard-panel-heading h2,
-.dashboard-meals-heading h3 {
+.dashboard-panel-heading h2 {
   color: #f1f0ea;
 }
 
 .dashboard-panel-heading > p {
   margin: 0;
   color: #c4c5bf;
-  font-size: 12px;
+  font-size: 10px;
+  text-align: right;
 }
 
 .dashboard-days {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 10px;
-  margin-top: 17px;
+  margin-top: 15px;
 }
 
 .dashboard-day {
   min-width: 0;
-  height: 96px;
+  height: 66px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 12px 14px;
+  padding: 9px 11px;
   border: 1px solid #414644;
   color: #c4c5bf;
   background: #272b2a;
@@ -179,24 +177,18 @@
 
 .dashboard-day__number {
   color: #f1f0ea;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1;
 }
 
 .dashboard-day__name {
   overflow: hidden;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-overflow: ellipsis;
-}
-
-.dashboard-day__today {
-  color: #222525;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dashboard-day.is-today {
@@ -210,29 +202,163 @@
   color: #222525;
 }
 
+.dashboard-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.dashboard-hero__feature,
+.dashboard-hero__aside {
+  min-height: 256px;
+  padding: 25px 28px;
+}
+
+.dashboard-hero__feature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow: hidden;
+  color: #222525;
+  background: #f26a32;
+  position: relative;
+}
+
+.dashboard-hero__feature::after {
+  position: absolute;
+  top: 12px;
+  right: -52px;
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgb(34 37 37 / 22%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 28px rgb(34 37 37 / 5%), 0 0 0 58px rgb(34 37 37 / 4%);
+  content: '';
+}
+
+.dashboard-hero__feature .dashboard-eyebrow {
+  color: rgb(34 37 37 / 72%);
+}
+
+.dashboard-hero__feature h2 {
+  max-width: 530px;
+  margin: 10px 0;
+  font-size: clamp(30px, 3.2vw, 42px);
+  letter-spacing: -1.5px;
+  line-height: 0.98;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-hero__feature > p:not(.dashboard-eyebrow) {
+  max-width: 500px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 0 16px;
+  border: 0;
+  color: #f1f0ea;
+  background: #222525;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-button:hover {
+  background: #303433;
+}
+
+.dashboard-hero__meta {
+  display: flex;
+  gap: 20px;
+  margin-top: 18px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-hero__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #303433;
+}
+
+.dashboard-panel-heading__eyebrow {
+  margin: 0;
+  color: #c4c5bf;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.dashboard-hero__aside h2 {
+  max-width: 250px;
+  margin: 26px 0 9px;
+  font-size: 26px;
+  letter-spacing: -0.7px;
+  line-height: 1.05;
+}
+
+.dashboard-hero__aside > p:not(.dashboard-panel-heading__eyebrow) {
+  max-width: 310px;
+  margin: 0;
+  color: #c4c5bf;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.dashboard-hero__aside a {
+  margin-top: auto;
+  padding-top: 18px;
+  color: #f26a32;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
 .dashboard-cards {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(360px, 1fr);
-  gap: 20px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 18px;
   margin-top: 20px;
 }
 
 .dashboard-nutrition,
 .dashboard-hydration {
-  min-height: 626px;
-  padding: 24px;
+  min-height: 378px;
+  padding: 23px 24px;
 }
 
 .dashboard-nutrition-summary {
+  min-height: 222px;
   display: flex;
   align-items: center;
-  gap: 28px;
-  padding: 22px 4px 20px;
+  gap: 25px;
+  padding: 18px 4px 12px;
 }
 
-.dashboard-circle {
-  width: 188px;
-  height: 188px;
+.dashboard-calorie-emblem {
+  width: 168px;
+  height: 168px;
   flex: none;
   display: flex;
   flex-direction: column;
@@ -240,193 +366,219 @@
   align-items: center;
   border-radius: 50%;
   color: #222525;
-}
-
-.dashboard-circle--food {
   background: #f26a32;
+  text-align: center;
 }
 
-.dashboard-circle--water {
-  width: 174px;
-  height: 174px;
-  background: #c4c5bf;
+.dashboard-calorie-emblem span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
 }
 
-.dashboard-circle strong {
-  font-size: 30px;
-  line-height: 1;
+.dashboard-calorie-emblem strong {
+  margin: 5px 0 1px;
+  font-size: 27px;
+  letter-spacing: -1px;
 }
 
-.dashboard-circle span {
-  margin-top: 8px;
-  font-size: 13px;
-}
-
-.dashboard-stats {
-  display: grid;
-  gap: 18px;
-  margin: 0;
-}
-
-.dashboard-stats dt {
-  color: #a7aaa6;
+.dashboard-calorie-emblem small {
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.1px;
 }
 
-.dashboard-stats dd {
-  margin: 4px 0 0;
+.dashboard-nutrition-detail {
+  min-width: 0;
+}
+
+.dashboard-nutrition-detail__eyebrow {
+  margin: 0 0 5px;
+  color: #a7aaa6;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+}
+
+.dashboard-nutrition-detail > strong {
+  display: block;
   color: #f1f0ea;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 26px;
 }
 
-.dashboard-stats dd small {
-  font-size: 12px;
+.dashboard-nutrition-detail > strong small {
+  font-size: 11px;
   font-weight: 500;
 }
 
-.dashboard-stats dd.is-accent {
-  color: #f26a32;
+.dashboard-nutrition-detail > p:last-child {
+  max-width: 240px;
+  margin: 7px 0 0;
+  color: #c4c5bf;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
-.dashboard-meals-heading {
+.dashboard-data-note {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 11px 14px;
+  border-left: 2px solid #f26a32;
+  color: #c4c5bf;
+  background: #272b2a;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.dashboard-data-note__row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding-top: 18px;
-  border-top: 1px solid #474b48;
 }
 
-.dashboard-meals-heading h3 {
+.dashboard-data-note__row span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.dashboard-data-note__row strong {
+  flex: none;
+  color: #f1f0ea;
   font-size: 11px;
-  letter-spacing: 1.2px;
 }
 
-.dashboard-meals-heading span {
+.dashboard-data-note small {
   color: #a7aaa6;
+  font-size: 9px;
+}
+
+.dashboard-hydration {
+  color: #222525;
+  background: #f3efe8;
+}
+
+.dashboard-hydration .dashboard-panel-heading h2 {
+  color: #222525;
+}
+
+.dashboard-hydration .dashboard-panel-heading > p {
+  color: #686b67;
+}
+
+.dashboard-water-summary {
+  min-height: 218px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 17px 0 8px;
+}
+
+.dashboard-circle--water {
+  width: 166px;
+  height: 166px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.dashboard-circle__inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #f3efe8;
+}
+
+.dashboard-circle__inner strong {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.dashboard-circle__inner small {
+  margin-top: 7px;
+  color: #686b67;
+  font-size: 10px;
+}
+
+.dashboard-water-stats {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.dashboard-water-stats strong {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.dashboard-water-stats > span {
+  color: #686b67;
+  font-size: 11px;
+}
+
+.dashboard-water-stats > small {
+  color: #686b67;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.dashboard-water-progress {
+  padding-top: 16px;
+  border-top: 1px solid #d5d1ca;
+}
+
+.dashboard-water-progress__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #686b67;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.8px;
 }
 
-.dashboard-meals {
-  display: grid;
-  gap: 8px;
-  margin: 12px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.dashboard-meal {
-  min-height: 54px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-  padding: 0 14px;
-  background: #272b2a;
-}
-
-.dashboard-meal div {
-  display: grid;
-  gap: 3px;
-}
-
-.dashboard-meal div span {
-  color: #f1f0ea;
-  font-size: 13px;
-}
-
-.dashboard-meal small {
-  color: #a7aaa6;
-  font-size: 11px;
-}
-
-.dashboard-meal strong {
-  color: #c4c5bf;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.dashboard-water-summary {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-top: 32px;
-}
-
-.dashboard-water-stats {
-  display: grid;
-  gap: 10px;
-}
-
-.dashboard-water-stats strong {
-  color: #f1f0ea;
-  font-size: 26px;
-}
-
-.dashboard-water-stats strong small {
-  font-size: 14px;
-}
-
-.dashboard-water-stats span {
-  color: #c4c5bf;
-  font-size: 13px;
-}
-
-.dashboard-water-stats > small {
-  color: #a7aaa6;
-  font-size: 12px;
-}
-
-.dashboard-cups-heading {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #474b48;
-  color: #c4c5bf;
-  font-size: 10px;
-}
-
-.dashboard-cups {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.dashboard-cup {
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border: 1px solid #555b58;
+.dashboard-water-progress__label strong {
   color: #222525;
-  background: #272b2a;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 11px;
 }
 
-.dashboard-cup.is-full {
-  border-color: #c4c5bf;
-  background: #c4c5bf;
+.dashboard-water-progress__track {
+  height: 7px;
+  overflow: hidden;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #d5d1ca;
 }
 
-.dashboard-cups-caption {
+.dashboard-water-progress__track span {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: #f26a32;
+  transition: width 180ms ease;
+}
+
+.dashboard-water-caption {
+  margin: 12px 0 0;
+  color: #777a74;
+  font-size: 9px;
+}
+
+.dashboard-footer {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
-  margin-top: 9px;
+  align-items: center;
+  gap: 16px;
+  padding-top: 18px;
   color: #a7aaa6;
-  font-size: 11px;
-}
-
-.dashboard-illustrative-note {
-  margin: 24px 0 0;
-  color: #a7aaa6;
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 9px;
+  letter-spacing: 0.8px;
 }
 
 .dashboard-inline-error {
@@ -461,17 +613,8 @@
   line-height: 1.6;
 }
 
-.dashboard-button {
-  min-height: 44px;
+.dashboard-state__card .dashboard-button {
   margin-top: 16px;
-  padding: 0 16px;
-  border: 0;
-  color: #222525;
-  background: #f1f0ea;
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
 }
 
 .dashboard-state__link {
@@ -487,7 +630,11 @@
   }
 
   .dashboard-main {
-    padding: 30px 24px;
+    padding: 30px 24px 24px;
+  }
+
+  .dashboard-hero {
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
   }
 
   .dashboard-cards {
@@ -511,7 +658,7 @@
     height: auto;
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 16px;
+    gap: 15px;
     padding: 18px 20px 12px;
   }
 
@@ -532,7 +679,7 @@
     flex: none;
     min-height: 38px;
     padding: 0 9px;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .dashboard-logout {
@@ -542,15 +689,16 @@
   }
 
   .dashboard-main {
-    padding: 24px 16px 32px;
+    padding: 24px 16px 24px;
   }
 
   .dashboard-header {
     align-items: flex-start;
+    gap: 10px;
   }
 
   .dashboard-header h1 {
-    font-size: 27px;
+    font-size: 25px;
   }
 
   .dashboard-user > span:first-child {
@@ -566,12 +714,11 @@
   }
 
   .dashboard-panel-heading h2 {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .dashboard-panel-heading > p {
-    font-size: 10px;
-    text-align: right;
+    font-size: 9px;
   }
 
   .dashboard-days {
@@ -580,88 +727,101 @@
   }
 
   .dashboard-day {
-    height: 78px;
+    height: 61px;
     align-items: center;
     padding: 8px 2px;
   }
 
   .dashboard-day__number {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .dashboard-day__name {
     max-width: 100%;
-    font-size: 8px;
+    font-size: 7px;
     letter-spacing: 0;
+  }
+
+  .dashboard-hero {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dashboard-hero__feature,
+  .dashboard-hero__aside {
+    min-height: 230px;
+    padding: 21px 20px;
+  }
+
+  .dashboard-hero__feature h2 {
+    max-width: 320px;
+    font-size: 34px;
+  }
+
+  .dashboard-hero__aside h2 {
+    margin-top: 20px;
   }
 
   .dashboard-nutrition,
   .dashboard-hydration {
-    padding: 18px 16px;
+    padding: 18px 15px;
   }
 
-  .dashboard-nutrition-summary {
-    gap: 20px;
-    padding: 20px 0 18px;
-  }
-
-  .dashboard-circle {
-    width: clamp(130px, 42vw, 174px);
-    height: clamp(130px, 42vw, 174px);
-  }
-
-  .dashboard-circle--water {
-    width: clamp(130px, 38vw, 160px);
-    height: clamp(130px, 38vw, 160px);
-  }
-
-  .dashboard-circle strong {
-    font-size: 26px;
-  }
-
-  .dashboard-circle span {
-    font-size: 11px;
-  }
-
-  .dashboard-stats {
-    gap: 14px;
-  }
-
-  .dashboard-stats dt {
-    font-size: 8px;
-    letter-spacing: 0.6px;
-  }
-
-  .dashboard-stats dd {
-    font-size: 17px;
-  }
-
+  .dashboard-nutrition-summary,
   .dashboard-water-summary {
-    gap: 18px;
-    margin-top: 24px;
+    min-height: 0;
+    gap: 14px;
+    padding: 22px 0 17px;
   }
 
+  .dashboard-calorie-emblem,
+  .dashboard-circle--water {
+    width: clamp(125px, 39vw, 155px);
+    height: clamp(125px, 39vw, 155px);
+  }
+
+  .dashboard-calorie-emblem strong,
+  .dashboard-circle__inner strong {
+    font-size: 21px;
+  }
+
+  .dashboard-calorie-emblem span {
+    font-size: 7px;
+  }
+
+  .dashboard-nutrition-detail__eyebrow {
+    font-size: 8px;
+  }
+
+  .dashboard-nutrition-detail > strong,
   .dashboard-water-stats strong {
-    font-size: 23px;
+    font-size: 20px;
+  }
+
+  .dashboard-nutrition-detail > p:last-child,
+  .dashboard-water-stats > small {
+    font-size: 9px;
+  }
+
+  .dashboard-footer {
+    flex-wrap: wrap;
+    font-size: 8px;
   }
 }
 
 @media (max-width: 370px) {
-  .dashboard-nutrition-summary {
-    gap: 12px;
+  .dashboard-header h1 {
+    font-size: 22px;
   }
 
-  .dashboard-circle {
-    width: 122px;
-    height: 122px;
-  }
-
+  .dashboard-calorie-emblem,
   .dashboard-circle--water {
-    width: 120px;
-    height: 120px;
+    width: 116px;
+    height: 116px;
   }
 
-  .dashboard-stats dt {
-    font-size: 7px;
+  .dashboard-calorie-emblem strong,
+  .dashboard-circle__inner strong {
+    font-size: 18px;
   }
 }

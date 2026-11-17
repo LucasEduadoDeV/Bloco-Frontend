@@ -1,0 +1,529 @@
+.tmb-backdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 24px;
+  background: rgb(10 12 12 / 78%);
+  backdrop-filter: blur(5px);
+}
+
+.tmb-dialog {
+  width: min(100%, 650px);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  border: 1px solid #474b48;
+  color: #f1f0ea;
+  background: #303433;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 40%);
+}
+
+.tmb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 26px 30px 0;
+}
+
+.tmb-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  color: #222525;
+  background: #f26a32;
+  font-size: 15px;
+}
+
+.tmb-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #474b48;
+  color: #c4c5bf;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.tmb-content {
+  padding: 14px 30px 12px;
+}
+
+.tmb-form-content {
+  padding: 0 30px 20px;
+}
+
+.tmb-profile-form {
+  margin: 0;
+}
+
+.tmb-eyebrow {
+  margin: 0;
+  color: #f26a32;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.tmb-content h2,
+.tmb-activity-content h2 {
+  margin: 8px 0;
+  color: #f1f0ea;
+  font-size: 27px;
+  letter-spacing: -0.7px;
+  line-height: 1.12;
+}
+
+.tmb-intro {
+  margin: 0;
+  color: #c4c5bf;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.tmb-gender {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 18px 0 16px;
+  padding: 0;
+  border: 0;
+}
+
+.tmb-gender legend,
+.tmb-field > label,
+.tmb-field-label {
+  width: 100%;
+  margin-bottom: 8px;
+  color: #c4c5bf;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.tmb-choice {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border: 1px solid #474b48;
+  color: #c4c5bf;
+  background: #272b2a;
+  cursor: pointer;
+  font-size: 10px;
+  text-align: left;
+}
+
+.tmb-choice.is-selected {
+  border-color: #f26a32;
+  color: #f1f0ea;
+}
+
+.tmb-radio {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #777d79;
+  border-radius: 50%;
+}
+
+.is-selected .tmb-radio {
+  border-color: #f26a32;
+}
+
+.is-selected .tmb-radio::after {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f26a32;
+  content: '';
+}
+
+.tmb-measurements {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tmb-field {
+  min-width: 0;
+  display: block;
+}
+
+.tmb-field > label,
+.tmb-field-label {
+  display: block;
+}
+
+.tmb-input {
+  min-width: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 0 8px;
+  border: 1px solid #474b48;
+  color: #c4c5bf;
+  background: #272b2a;
+}
+
+.tmb-input input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: #f1f0ea;
+  background: transparent;
+  font: inherit;
+  font-size: 10px;
+}
+
+.tmb-input input::placeholder {
+  color: #858a85;
+  opacity: 1;
+}
+
+.tmb-input input::-webkit-inner-spin-button,
+.tmb-input input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.tmb-input input[type='number'] {
+  appearance: textfield;
+}
+
+.tmb-imperial-height {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  gap: 5px;
+}
+
+.tmb-imperial-height input {
+  min-width: 0;
+  flex: 1;
+}
+
+.tmb-unit-switch {
+  flex: none;
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: #1f2322;
+}
+
+.tmb-unit-switch button {
+  min-height: 25px;
+  padding: 0 5px;
+  border: 0;
+  color: #a7aaa6;
+  background: transparent;
+  cursor: pointer;
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.tmb-unit-switch button.is-selected {
+  color: #222525;
+  background: #f26a32;
+  font-weight: 700;
+}
+
+.tmb-input-unit {
+  flex: none;
+  color: #c4c5bf;
+  font-size: 9px;
+}
+
+.tmb-activity-field {
+  margin-top: 16px;
+}
+
+.tmb-activity-trigger {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border: 1px solid #474b48;
+  color: #a7aaa6;
+  background: #272b2a;
+  cursor: pointer;
+  font-size: 10px;
+  text-align: left;
+}
+
+.tmb-activity-trigger > span:last-child {
+  color: #f26a32;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.tmb-activity-trigger:hover,
+.tmb-choice:hover,
+.tmb-activity-option:hover {
+  border-color: #f26a32;
+}
+
+.tmb-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 16px 0 0;
+  color: #a7aaa6;
+  font-size: 9px;
+}
+
+.tmb-note span {
+  color: #f26a32;
+  font-size: 14px;
+}
+
+.tmb-notice {
+  margin: 12px 0 0;
+  color: #ffb08f;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.tmb-footer {
+  min-height: 84px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 30px;
+  border-top: 1px solid #474b48;
+}
+
+.tmb-later,
+.tmb-primary {
+  min-height: 44px;
+  border: 0;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.tmb-later {
+  padding: 0;
+  color: #c4c5bf;
+  background: transparent;
+}
+
+.tmb-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 20px;
+  color: #222525;
+  background: #f26a32;
+}
+
+.tmb-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.tmb-primary span {
+  font-size: 14px;
+}
+
+.tmb-dialog--activity {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tmb-activity-screen {
+  min-height: 600px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.tmb-activity-header {
+  min-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 30px;
+  padding-top: 26px;
+  border-bottom: 1px solid #474b48;
+}
+
+.tmb-back {
+  padding: 0;
+  border: 0;
+  color: #c4c5bf;
+  background: transparent;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.tmb-back span {
+  margin-right: 8px;
+  color: #f26a32;
+  font-size: 15px;
+}
+
+.tmb-activity-header p {
+  margin: 0;
+  color: #f26a32;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.tmb-activity-content {
+  flex: 1;
+  padding: 20px 30px;
+}
+
+.tmb-activity-content h2 {
+  margin-top: 8px;
+}
+
+.tmb-activity-options {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.tmb-activity-option {
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid #474b48;
+  color: #f1f0ea;
+  background: #272b2a;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tmb-activity-option.is-selected {
+  border-color: #f26a32;
+  background: #302c29;
+}
+
+.tmb-activity-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.tmb-activity-copy strong {
+  font-size: 10px;
+}
+
+.tmb-activity-copy > span {
+  color: #a7aaa6;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.tmb-activity-check {
+  color: #f26a32;
+  font-size: 15px;
+  text-align: right;
+}
+
+.tmb-activity-footer {
+  min-height: 82px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 30px;
+  border-top: 1px solid #474b48;
+}
+
+.tmb-activity-footer > span {
+  color: #a7aaa6;
+  font-size: 9px;
+}
+
+@media (max-width: 600px) {
+  .tmb-backdrop {
+    padding: 12px;
+  }
+
+  .tmb-dialog {
+    max-height: calc(100dvh - 24px);
+  }
+
+  .tmb-header {
+    padding: 20px 20px 0;
+  }
+
+  .tmb-content,
+  .tmb-activity-content {
+    padding: 14px 20px 18px;
+  }
+
+  .tmb-form-content {
+    padding: 0 20px 18px;
+  }
+
+  .tmb-content h2,
+  .tmb-activity-content h2 {
+    font-size: 23px;
+  }
+
+  .tmb-measurements {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tmb-measurements .tmb-field:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .tmb-footer,
+  .tmb-activity-footer {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .tmb-dialog--activity,
+  .tmb-activity-screen {
+    min-height: auto;
+  }
+
+  .tmb-activity-header {
+    margin: 0 20px;
+  }
+
+  .tmb-activity-option {
+    min-height: 68px;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .tmb-activity-footer > span {
+    max-width: 135px;
+    line-height: 1.4;
+  }
+
+  .tmb-primary {
+    gap: 8px;
+    padding: 0 12px;
+    font-size: 9px;
+  }
+}

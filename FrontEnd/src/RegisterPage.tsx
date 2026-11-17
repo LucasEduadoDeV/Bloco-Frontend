@@ -5,6 +5,9 @@ import './register.css';
 function RegisterPage() {
   const [message, setMessage] = useState('');
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [confirmationError, setConfirmationError] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
@@ -12,21 +15,28 @@ function RegisterPage() {
     event.preventDefault();
     setMessage('');
     setFieldErrors({});
-    setIsRegistered(false);
-    setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
+    const password = String(formData.get('password') ?? '');
+    const passwordConfirmation = String(formData.get('passwordConfirmation') ?? '');
     const phone = String(formData.get('phone') ?? '').trim();
+
+    if (password !== passwordConfirmation) {
+      setConfirmationError('As senhas não coincidem.');
+      return;
+    }
+
+    setConfirmationError('');
+    setIsSubmitting(true);
 
     try {
       await register({
         name: String(formData.get('name') ?? '').trim(),
         email: String(formData.get('email') ?? '').trim(),
-        password: String(formData.get('password') ?? ''),
+        password,
         phone: phone || null,
       });
       setIsRegistered(true);
-      setMessage('Conta criada com sucesso. Você já pode entrar.');
     } catch (error) {
       if (error instanceof AuthApiError) {
         setFieldErrors(error.fields);
@@ -85,15 +95,86 @@ function RegisterPage() {
 
           <div className="register-field">
             <label htmlFor="register-password">SENHA</label>
-            <input
-              autoComplete="new-password"
-              id="register-password"
-              minLength={8}
-              name="password"
-              placeholder="Crie uma senha"
-              required
-              type="password"
-            />
+            <div className="register-password-input">
+              <input
+                autoComplete="new-password"
+                id="register-password"
+                minLength={8}
+                name="password"
+                onChange={(event) => {
+                  if (!confirmationError) {
+                    return;
+                  }
+
+                  const confirmation = new FormData(event.currentTarget.form ?? undefined).get(
+                    'passwordConfirmation',
+                  );
+                  if (event.currentTarget.value === confirmation) {
+                    setConfirmationError('');
+                  }
+                }}
+                placeholder="Crie uma senha"
+                required
+                type={isPasswordVisible ? 'text' : 'password'}
+              />
+              <button
+                aria-label={isPasswordVisible ? 'Ocultar senha' : 'Mostrar senha'}
+                aria-pressed={isPasswordVisible}
+                className="register-password-toggle"
+                onClick={() => setIsPasswordVisible((visible) => !visible)}
+                type="button"
+              >
+                {isPasswordVisible ? 'OCULTAR' : 'MOSTRAR'}
+              </button>
+            </div>
+          </div>
+
+          <div className="register-field">
+            <label htmlFor="register-password-confirmation">CONFIRMAR SENHA</label>
+            <div className="register-password-input">
+              <input
+                autoComplete="new-password"
+                aria-describedby={
+                  confirmationError ? 'register-password-confirmation-error' : undefined
+                }
+                aria-invalid={confirmationError ? true : undefined}
+                id="register-password-confirmation"
+                minLength={8}
+                name="passwordConfirmation"
+                onChange={(event) => {
+                  if (!confirmationError) {
+                    return;
+                  }
+
+                  const form = event.currentTarget.form;
+                  const password = new FormData(form ?? undefined).get('password');
+                  if (event.currentTarget.value === password) {
+                    setConfirmationError('');
+                  }
+                }}
+                placeholder="Digite sua senha novamente"
+                required
+                type={isConfirmationVisible ? 'text' : 'password'}
+              />
+              <button
+                aria-label={isConfirmationVisible ? 'Ocultar confirmação de senha' : 'Mostrar confirmação de senha'}
+                aria-pressed={isConfirmationVisible}
+                className="register-password-toggle"
+                onClick={() => setIsConfirmationVisible((visible) => !visible)}
+                type="button"
+              >
+                {isConfirmationVisible ? 'OCULTAR' : 'MOSTRAR'}
+              </button>
+            </div>
+            {confirmationError && (
+              <span
+                className="register-field-error"
+                id="register-password-confirmation-error"
+                role="alert"
+              >
+                {confirmationError}
+              </span>
+            )}
           </div>
 
           <div className="register-field">
@@ -114,17 +195,12 @@ function RegisterPage() {
             {isSubmitting ? 'CRIANDO CONTA…' : 'CRIAR MINHA CONTA'}
           </button>
           <p
-            className={`register-message${message && !isRegistered ? ' register-message--error' : ''}`}
+            className={`register-message${message ? ' register-message--error' : ''}`}
             aria-live="polite"
             role="status"
           >
             {message}
           </p>
-          {isRegistered && (
-            <a className="register-success-link" href="/login">
-              IR PARA O LOGIN
-            </a>
-          )}
         </form>
 
         <p className="register-login">
@@ -140,6 +216,34 @@ function RegisterPage() {
           </ul>
         )}
       </section>
+
+      {isRegistered && (
+        <div className="register-success-backdrop">
+          <section
+            aria-labelledby="register-success-title"
+            aria-modal="true"
+            className="register-success-dialog"
+            role="dialog"
+          >
+            <span className="register-success-icon" aria-hidden="true">
+              ✓
+            </span>
+            <p className="register-eyebrow">CADASTRO CONCLUÍDO</p>
+            <h2 id="register-success-title">Conta criada com sucesso.</h2>
+            <p className="register-success-copy">
+              Seu cadastro está pronto. Agora você já pode acessar sua conta.
+            </p>
+            <button
+              autoFocus
+              className="register-submit"
+              onClick={() => window.location.assign('/login')}
+              type="button"
+            >
+              IR PARA LOGIN
+            </button>
+          </section>
+        </div>
+      )}
     </main>
   );
 }

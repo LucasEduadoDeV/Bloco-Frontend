@@ -25,7 +25,7 @@ Fluxo de criação de conta para usuários comuns:
 - Campos obrigatórios: nome, e-mail e senha.
 - Campo opcional: telefone.
 - A interface valida presença dos campos obrigatórios, formato de e-mail, nome de até 255 caracteres, e-mail de até 320 caracteres, senha com mínimo de 8 caracteres e telefone de até 50 caracteres.
-- O formulário envia os dados para `POST /api/v1/register`. Em sucesso, confirma a criação da conta e oferece um link para o login.
+- O formulário envia os dados para `POST /api/v1/register`. Ao receber `201 Created`, mostra uma confirmação e oferece a ação para seguir ao login.
 - Erros de validação e e-mail já cadastrado são apresentados ao usuário; indisponibilidade da API também é informada.
 
 O cadastro de negócios, como academias, é uma possibilidade futura e não faz parte deste fluxo.
@@ -48,12 +48,20 @@ O frontend usa os endpoints documentados em `http://localhost:3000/api/v1`. Em d
 - Cadastro envia `{ name, email, password, phone }`, com `phone: null` quando o campo opcional está vazio. O backend retorna apenas o perfil público; senha e hash não são expostos.
 - Login envia `{ email, password }`, retorna o perfil público e define um cookie JWT HttpOnly. O token expira em 15 minutos e não há renovação automática nesta etapa. O frontend não lê nem armazena o JWT; o navegador envia o cookie automaticamente.
 - Antes de cada operação `POST`, o frontend solicita `GET /api/v1/csrf`, lê o cookie `XSRF-TOKEN` e envia seu valor no header `X-XSRF-TOKEN`.
-- A rota `/dashboard` consulta `GET /api/v1/me` antes de exibir os dados e redireciona ao login em caso de `401`. O botão de saída chama `POST /api/v1/logout` com CSRF e retorna ao login em caso de sucesso.
+- A rota `/dashboard` consulta `GET /api/v1/me` antes de exibir os dados e redireciona ao login em caso de `401`. Usa do perfil `name`, TMB (`basalMetabolicRateKcal`), gasto energético estimado para manutenção (`estimatedDailyEnergyExpenditureKcal`), consumo calórico registrado no dia (`dailyCalorieConsumptionKcal`), meta de água e consumo de água do dia. O botão de saída chama `POST /api/v1/logout` com CSRF e retorna ao login em caso de sucesso.
 - Durante o desenvolvimento com HTTP local, configure `AUTH_COOKIE_SECURE=false` no backend para que o navegador aceite o cookie de autenticação. Em produção, use HTTPS e mantenha `Secure` ligado.
 - Respostas de erro usam `{ code, message, fields }`. A interface apresenta campos de validação, e-mail já cadastrado e erro genérico de credenciais.
 - Senhas são armazenadas com hash no backend. HTTPS deve ser configurado no ambiente de implantação.
 - Recuperação de senha, verificação de e-mail e renovação de sessão ainda não estão implementadas.
-- Os dados de alimentação e hidratação do dashboard são apenas ilustrativos e ainda não vêm da API.
+- O dashboard apresenta os totais diários de calorias e água retornados por `/api/v1/me`; não apresenta detalhes individuais das refeições.
+
+### Configuração do perfil para cálculo do TMB
+
+Quando `GET /api/v1/me` retorna TMB igual a `0` e os dados de configuração do perfil ainda não estão preenchidos, o dashboard abre o Modal TMB 01. Ele coleta gênero, idade, altura, peso e nível de atividade. A pessoa pode adiar o preenchimento; altura e peso aceitam unidades métricas e imperiais.
+
+O formulário salva pelo `PUT /api/v1/me/profile`, autenticado pelo cookie JWT e protegido por CSRF. Todos os campos são obrigatórios. O frontend envia `gender` (`FEMALE` ou `MALE`), `ageYears` (1–120), `activityLevel` (códigos 1–5), e altura e peso nos formatos discriminados por unidade. Para altura: `{ "unit": "CM", "value": 170.18 }` ou `{ "unit": "FT_IN", "feet": 5, "inches": 7 }`. Para peso: `{ "unit": "KG", "value": 68.04 }` ou `{ "unit": "LB", "value": 150 }`. O backend normaliza para centímetros e quilogramas; limites após conversão: altura 50–250 cm e peso 20–300 kg.
+
+Sucesso retorna `200 OK` com gênero, idade, altura e peso normalizados, nível de atividade, TMB e gasto energético diário estimado. A TMB usa Mifflin–St Jeor; o gasto estimado é a TMB multiplicada pelo fator de manutenção correspondente ao nível de atividade. Esse gasto estimado não é uma meta de consumo. Erros de validação retornam `400` no padrão `{ code, message, fields }`. `GET /api/v1/me` reflete os dados salvos. O dashboard abre o convite se a TMB for zero e os dados de configuração ainda não estiverem completos; assim, ele não reaparece após salvar o perfil mesmo que o backend retorne TMB zero.
 
 ### Dashboard
 
